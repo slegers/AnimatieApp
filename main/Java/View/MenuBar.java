@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
  * Created by yanice on 15/01/17.
  */
 public class MenuBar extends JMenuBar {
-    private JMenu menu, help,exit;
+    private JMenu menu, help,exit, teams;
     private JMenuItem menuItem;
 
     public MenuBar(){
@@ -44,18 +44,27 @@ public class MenuBar extends JMenuBar {
                 }
             }
         });
+        teams.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+
     }
 
     private void createItems() {
         menu = new JMenu("Menu");
         help = new JMenu("help");
         exit = new JMenu("exit");
+        teams = new JMenu("exit");
 
     }
     private void setElements(){
         this.add(menu);
         this.add(help);
         this.add(exit);
+        this.add(teams);
 
     }
 }

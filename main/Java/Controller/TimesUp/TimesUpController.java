@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class TimesUpController implements Subject {
     private TimesUpSettingsFacade timesUpSettingsFacade = new TimesUpSettingsFacade();
-    private TimesUpRepo repo = new TimesUpRepo(this);
+    private TimesUpGame repo = new TimesUpGame(this);
     private ArrayList<Observer> observers = new ArrayList<>();
 
     public void saveTimesUpSettings(int numbTeam, int numbNames, int time, String list, boolean extraView) {
@@ -106,6 +106,7 @@ public class TimesUpController implements Subject {
     public String getScore() {
         return repo.getCurrentTeamScore();
     }
+
 }
 
 

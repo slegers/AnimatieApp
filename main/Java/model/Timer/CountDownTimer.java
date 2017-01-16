@@ -30,9 +30,12 @@ public class CountDownTimer {
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (0 != 0) {
+                if (maxTime - timePast!= 0) {
                     timePast++;
                    controller.notifyAll();
+                }else{
+                    stop();
+                    //TODO set to OutOfTimeStatew
                 }
             }
         });
@@ -50,7 +53,9 @@ public class CountDownTimer {
         return parseTimeToString(maxTime - timePast);
     }
     private String parseTimeToString(int time){
-        System.out.println(time);
+        if(time < 1){
+            stop();
+        }
         int min = time/60;
         int sec = time % 60;
         return min +":" + sec;

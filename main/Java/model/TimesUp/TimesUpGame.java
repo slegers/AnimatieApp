@@ -4,8 +4,8 @@ import Controller.TimesUp.TimesUpController;
 import model.Team.Team;
 import model.Timer.CountDownTimer;
 import model.TimesUp.State.NextRoundState;
-import model.TimesUp.State.OutOfNamesState;
-import model.TimesUp.State.OutOfTimeStatus;
+import model.TimesUp.State.NormalState;
+import model.TimesUp.State.OutOfTimeState;
 import model.TimesUp.State.TimesUpState;
 
 import java.util.ArrayList;
@@ -15,17 +15,20 @@ import java.util.Scanner;
 /**
  * Created by yanice on 29/12/16.
  */
-public class TimesUpRepo {
+public class TimesUpGame {
     private ArrayList<String> names = new ArrayList<>();
+    private ArrayList<String> guessedNames = new ArrayList<>();
+
     private TimesUpController controller;
     private CountDownTimer timer;
     private ArrayList<Team> teams = new ArrayList<>();
     private Team currentTeam;
+    private String name;
     private TimesUpState state;
-    private NextRoundState nextRoundState = new NextRoundState();
-    private OutOfNamesState outOfNamesState = new OutOfNamesState();
-    private OutOfTimeStatus outOfTimeStatus = new OutOfTimeStatus();
-    public TimesUpRepo(TimesUpController controller){
+    private NormalState normalState = new NormalState(this);
+    private NextRoundState nextRoundState = new NextRoundState(this);
+    private OutOfTimeState outOfTimeState = new OutOfTimeState(this);
+    public TimesUpGame(TimesUpController controller){
         this.controller = controller;
     }
 
@@ -34,11 +37,15 @@ public class TimesUpRepo {
     }
 
     public String getNextName(){
-
-        Random r = new Random();
-        String name = names.get(r.nextInt(names.size()));
-        removeName(name);
         return name;
+
+    }
+    public void setNextName(String name){
+        this.name = name;
+    }
+    public String getRandomName(){
+        Random r = new Random();
+        return names.get(r.nextInt(names.size()));
     }
     public void removeName(String name){
         names.remove(name);
@@ -59,10 +66,14 @@ public class TimesUpRepo {
     }
 
     public void setTimer() {
-        this.timer = new CountDownTimer(controller);
+        this.timer = new CountDownTimer(this);
     }
-
-
+    public void notifyView(){
+        controller.notifyObservers();
+    }
+    public void resertTimer(){
+        timer.resertTimer();
+    }
     public ArrayList<Team> getTeams() {
         return teams;
     }
@@ -95,27 +106,30 @@ public class TimesUpRepo {
         return timer.isRunning();
     }
 
+    public NormalState getNormalState() {
+        return normalState;
+    }
+
+    public OutOfTimeState getOutOfTimeState() {
+        return outOfTimeState;
+    }
+
     public NextRoundState getNextRoundState() {
         return nextRoundState;
     }
 
-    public OutOfNamesState getOutOfNamesState() {
-        return outOfNamesState;
+    public void setState(TimesUpState state) {
+        this.state = state;
     }
 
-    public void setOutOfNamesState(OutOfNamesState outOfNamesState) {
-        this.outOfNamesState = outOfNamesState;
+    public ArrayList<String> getGuessedNames() {
+        return guessedNames;
+    }
+    public void addGuessedNames(String name) {
+         guessedNames.add(name);
     }
 
-    public OutOfTimeStatus getOutOfTimeStatus() {
-        return outOfTimeStatus;
-    }
-
-    public void setOutOfTimeStatus(OutOfTimeStatus outOfTimeStatus) {
-        this.outOfTimeStatus = outOfTimeStatus;
-    }
-
-    public TimesUpState getState() {
-        return state;
+    public void startTimer() {
+        timer.start();
     }
 }

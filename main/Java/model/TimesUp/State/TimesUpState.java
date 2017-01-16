@@ -1,10 +1,13 @@
 package model.TimesUp.State;
 
 /**
- * Created by yanice on 16/01/17.
+ * Created by yanice on 17/01/17.
  */
 public interface TimesUpState {
-     String getNextName();
 
+    void pass();
 
+    void next();
+
+    void start();
 }
