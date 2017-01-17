@@ -5,18 +5,18 @@ import model.TimesUp.TimesUpGame;
 /**
  * Created by yanice on 17/01/17.
  */
-public class OutOfTimeState implements TimesUpState {
+public class OutOfNamesState implements TimesUpState{
+
     TimesUpGame game;
-    public OutOfTimeState(TimesUpGame game){
+    public OutOfNamesState(TimesUpGame game){
         this.game = game;
+
     }
 
     @Override
     public void nextButtonPushed() {
-        game.setNextTeam();
-        game.setNextName(game.getRandomName());
-        game.setTime("Start?");
-        game.setState(game.getInitialState());
+        System.out.println("out of nams");
+
     }
 
     @Override

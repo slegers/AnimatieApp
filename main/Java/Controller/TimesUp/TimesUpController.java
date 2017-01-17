@@ -8,6 +8,7 @@ import model.TimesUp.Settings.TimesUpSettingsFacade;
 import View.TimesUp.*;
 import model.TimesUp.*;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,10 +49,10 @@ public class TimesUpController implements Subject {
     private void createTimesUpView() {
         readNames();
         if(getTimesUpSettingsFacade().getAdminField()){
-
            registerObserver( new TimerView(this));
         }
-        new TimesUpView(this);
+        TimesUpView view = new TimesUpView(this);
+        registerObserver( view);
     }
     private boolean createAnotherTeam(){
         if(getTimesUpSettingsFacade().getNumbTeams() > repo.getTeams().size()){
@@ -92,7 +93,8 @@ public class TimesUpController implements Subject {
     @Override
     public void notifyObservers() {
         for (Observer o : getObservers()){
-            o.update();
+            //o.update();
+            o.update(repo.getNextName(),repo.getCurrentTeamName(),repo.getTime(),repo.getCurrentTeamScore());
         }
     }
     public String getNextName(){
@@ -107,6 +109,18 @@ public class TimesUpController implements Subject {
         return repo.getCurrentTeamScore();
     }
 
+    public void startButtonPushed() {
+         repo.startButtonPushed();
+            notifyObservers();
+    }
+    public void nextButtonPushed() {
+        repo.nextButtonPushed();
+        notifyObservers();
+    }
+    public void passButtonPushed() {
+        repo.passButtonPushed();
+        notifyObservers();
+    }
 }
 
 

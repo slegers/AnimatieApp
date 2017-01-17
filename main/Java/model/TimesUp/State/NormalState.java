@@ -6,27 +6,32 @@ import model.TimesUp.TimesUpGame;
  * Created by yanice on 17/01/17.
  */
 public class NormalState implements TimesUpState {
-
-    private TimesUpGame timesUpGame;
-
-    public NormalState(TimesUpGame timesUpGame){
-        this.timesUpGame = timesUpGame;
+    TimesUpGame game;
+    public NormalState(TimesUpGame game){
+        this.game = game;
     }
 
     @Override
-    public void pass() {
-        timesUpGame.setNextName(timesUpGame.getRandomName());
+    public void nextButtonPushed() {
+        if(game.isRunning()){
+            game.increasePoint();
+            game.removeName(game.getNextName());
+            game.addGuessedNames(game.getNextName());
+            String name = game.getRandomName();
+            game.setNextName(name);
+        }
     }
 
     @Override
-    public void next() {
-        timesUpGame.addGuessedNames(timesUpGame.getNextName());
-        timesUpGame.removeName(timesUpGame.getNextName());
-        timesUpGame.setNextName(timesUpGame.getRandomName());
+    public void startButtonPushed() {
+        game.startTimer();
     }
 
     @Override
-    public void start() {
-
+    public void passButtonPushed() {
+        if(game.isRunning()){
+            String name = game.getRandomName();
+            game.setNextName(name);
+        }
     }
 }

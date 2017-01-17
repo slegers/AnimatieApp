@@ -23,29 +23,30 @@ public class TimesUpView extends JFrame implements Observer{
         this.controller = controller;
         createElements();
         setElements();
-        update();
+        //update();
         addActionListners();
         setSize(350,600);
         setLocationRelativeTo(null);
+        controller.notifyObservers();
     }
 
     private void addActionListners() {
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                notImpl();
+                controller.startButtonPushed();
             }
         });
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                notImpl();
+                controller.nextButtonPushed();
             }
         });
         pass.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                notImpl();
+                controller.passButtonPushed();
             }
         });
     }
@@ -117,10 +118,11 @@ public class TimesUpView extends JFrame implements Observer{
         JOptionPane.showMessageDialog(null,"Sorry to inform you, this method is not impl yet!");
     }
 
-    public void update(){
-        timerL.setText(controller.getNextTime());
-        nameL.setText(controller.getNextName());
-        teamNameL.setText(controller.getNextTeamName());
-        score.setText(controller.getScore());
+    @Override
+    public void update(String name, String teamName, String time, String teamScore) {
+        timerL.setText(time);
+        nameL.setText(name);
+        teamNameL.setText(teamName);
+        score.setText(teamScore);
     }
 }

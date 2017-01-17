@@ -15,7 +15,6 @@ public class TimerView extends JFrame implements Observer{
     public TimerView(TimesUpController controller){
         this.controller = controller;
         setElements();
-        update();
     }
 
     private void setElements() {
@@ -25,10 +24,10 @@ public class TimerView extends JFrame implements Observer{
         setVisible(true);
     }
 
-        @Override
-        public void update() {
-            timerLabe.setText(controller.getNextTime());
-        }
+    @Override
+    public void update(String name, String teamName, String time, String teamScore) {
+
+    }
 
 }
 

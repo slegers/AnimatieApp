@@ -57,7 +57,7 @@ public class MenuBar extends JMenuBar {
         menu = new JMenu("Menu");
         help = new JMenu("help");
         exit = new JMenu("exit");
-        teams = new JMenu("exit");
+        teams = new JMenu("Team");
 
     }
     private void setElements(){

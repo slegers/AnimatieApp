@@ -6,6 +6,7 @@ import model.Game.GameState.StartStatus;
 import model.Timer.Status.StoptedStatus;
 import model.Timer.Status.TimerStatus;
 import model.Timer.Status.RunningStatus;
+import model.TimesUp.TimesUpGame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -20,22 +21,25 @@ public class CountDownTimer {
     private int maxTime;
     private TimesUpController controller;
     private TimerStatus status;
-    private StoptedStatus stoptedStatus = new StoptedStatus();
-    private RunningStatus runningStatus = new RunningStatus();
+    private StoptedStatus stoptedStatus;
+    private RunningStatus runningStatus;
 
-    public CountDownTimer(TimesUpController controller) {
+    public CountDownTimer(TimesUpController controller, TimesUpGame game) {
         maxTime = controller.getTimesUpSettingsFacade().getMaxTime();
         timePast = 0;
+        stoptedStatus = new StoptedStatus();
+        runningStatus = new RunningStatus();
+        status = getStoptedStatus();
         this.controller = controller;
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (maxTime - timePast!= 0) {
                     timePast++;
-                   controller.notifyAll();
+                    game.setTime(getTime());
+                    controller.notifyObservers();
                 }else{
                     stop();
-                    //TODO set to OutOfTimeStatew
                 }
             }
         });
@@ -61,10 +65,6 @@ public class CountDownTimer {
         return min +":" + sec;
     }
 
-    public void setTime(int time) {
-        this.maxTime = time;
-    }
-
     public void stop() {
         setStatus(getStoptedStatus());
         timer.stop();
@@ -88,5 +88,9 @@ public class CountDownTimer {
 
     public RunningStatus getRunningStatus() {
         return runningStatus;
+    }
+
+    public int getTimeInt(){
+        return maxTime - timePast;
     }
 }

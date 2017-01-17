@@ -5,9 +5,11 @@ package model.TimesUp.State;
  */
 public interface TimesUpState {
 
-    void pass();
+    void nextButtonPushed();
 
-    void next();
+    void startButtonPushed();
 
-    void start();
+    void passButtonPushed();
+
+
 }
