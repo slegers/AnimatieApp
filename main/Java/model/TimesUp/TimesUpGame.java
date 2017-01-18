@@ -55,7 +55,6 @@ public class TimesUpGame {
     public String getRandomName(){
         Random r = new Random();
         if(names.size() == 0){
-            setState(getOutOfNamesState());
             return "";
         }
         return names.get(r.nextInt(names.size()));
@@ -115,8 +114,10 @@ public class TimesUpGame {
     }
 
     public void addTeam(String teamName) {
-        Team team = new Team(teamName, teams.size());
-        teams.add(team);
+        if(hasValidName(teamName)){
+            Team team = new Team(teamName, teams.size());
+            teams.add(team);
+        }
     }
 
     public Team getCurrentTeam() {
@@ -140,7 +141,6 @@ public class TimesUpGame {
     }
 
     public void startButtonPushed() {
-
         determineState();
         state.startButtonPushed();
     }
@@ -153,7 +153,8 @@ public class TimesUpGame {
         }
     }
 
-    public void nextButtonPushed() {determineState();
+    public void nextButtonPushed() {
+        determineState();
         state.nextButtonPushed();
     }
     public void passButtonPushed() {
@@ -163,7 +164,6 @@ public class TimesUpGame {
     }
     public boolean isOutOfNames(){
         if(getNames().size() <=0){
-            state = getOutOfNamesState();
             return true;
         }
         return false;
@@ -182,6 +182,8 @@ public class TimesUpGame {
 
     public void setState(TimesUpState state) {
         this.state = state;
+        this.state.initiate();
+
     }
 
     public boolean isOutOfTime() {
@@ -197,5 +199,34 @@ public class TimesUpGame {
 
     public InitialState getInitialState() {
         return initialState;
+    }
+
+    public boolean hasValidName(String name){
+        if(name.trim().matches("")){
+            return false;
+        }
+        return true;
+    }
+
+    public void resetNames() {
+        names =  guessedNames;
+        guessedNames = new ArrayList<>();
+    }
+
+    public void stopTimer() {
+        timer.stop();
+    }
+
+    public void enalbeStartButton(){
+        controller.enalbeStartButton();
+    }
+    public void disalbeStartButton(){
+        controller.disalbeStartButton();
+    }
+    public void enableNextPassButton(){
+       controller.enableNextPassButton();
+    }
+    public void disableNextPassButton(){
+        controller.disableNextPassButton();
     }
 }

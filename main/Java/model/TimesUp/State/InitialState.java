@@ -20,14 +20,26 @@ public class InitialState implements  TimesUpState {
 
     @Override
     public void startButtonPushed() {
-        game.setTime("Start?");
+        game.startTimer();
+        game.enableNextPassButton();
+        game.disalbeStartButton();
         game.setNextName(game.getRandomName());
         game.setState(game.getNormalState());
-        game.resertTimer();
     }
 
     @Override
     public void passButtonPushed() {
 
     }
+
+    @Override
+    public void initiate() {
+        game.setNextTeam();
+        game.setTime("Start?");
+        game.stopTimer();
+        game.setNextName(game.getRandomName());
+        game.disableNextPassButton();
+        game.enalbeStartButton();
+    }
+
 }

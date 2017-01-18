@@ -23,10 +23,10 @@ public class TimesUpView extends JFrame implements Observer{
         this.controller = controller;
         createElements();
         setElements();
-        //update();
         addActionListners();
         setSize(350,600);
         setLocationRelativeTo(null);
+        disableNextPassButton();
         controller.notifyObservers();
     }
 
@@ -56,9 +56,9 @@ public class TimesUpView extends JFrame implements Observer{
         teamP = new JPanel();
         buttonP = new JPanel();
         timerL = new JLabel();
-        nameL = new JLabel();
-        teamNameL = new JLabel();
-        score = new JLabel();
+        nameL = new JLabel(controller.getNextName());
+        teamNameL = new JLabel(controller.getNextTeamName());
+        score = new JLabel(controller.getScore());
         next = new JButton("next");
         pass = new JButton("pass");
         start = new JButton("start");
@@ -125,4 +125,19 @@ public class TimesUpView extends JFrame implements Observer{
         teamNameL.setText(teamName);
         score.setText(teamScore);
     }
+    public void enalbeStartButton(){
+        start.setEnabled(true);
+    }
+    public void disalbeStartButton(){
+        start.setEnabled(false);
+    }
+    public void enableNextPassButton(){
+        next.setEnabled(true);
+        pass.setEnabled(true);
+    }
+    public void disableNextPassButton(){
+        next.setEnabled(false);
+        pass.setEnabled(false);
+    }
+
 }

@@ -13,25 +13,25 @@ public class NormalState implements TimesUpState {
 
     @Override
     public void nextButtonPushed() {
-        if(game.isRunning()){
-            game.increasePoint();
-            game.removeName(game.getNextName());
-            game.addGuessedNames(game.getNextName());
-            String name = game.getRandomName();
-            game.setNextName(name);
-        }
+        String name = game.getNextName();
+        game.removeName(name);
+        game.addGuessedNames(name);
+        game.setNextName(game.getRandomName());
+        game.increasePoint();
     }
 
     @Override
-    public void startButtonPushed() {
-        game.startTimer();
+    public void startButtonPushed(){
     }
 
     @Override
     public void passButtonPushed() {
-        if(game.isRunning()){
-            String name = game.getRandomName();
-            game.setNextName(name);
-        }
+        game.setNextName(game.getRandomName());
     }
+
+    @Override
+    public void initiate() {
+
+    }
+
 }

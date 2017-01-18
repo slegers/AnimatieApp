@@ -19,6 +19,8 @@ public class TimesUpController implements Subject {
     private TimesUpSettingsFacade timesUpSettingsFacade = new TimesUpSettingsFacade();
     private TimesUpGame repo = new TimesUpGame(this);
     private ArrayList<Observer> observers = new ArrayList<>();
+    private  TimesUpView view;
+
 
     public void saveTimesUpSettings(int numbTeam, int numbNames, int time, String list, boolean extraView) {
         timesUpSettingsFacade.setNumbTeams(numbTeam);
@@ -51,7 +53,7 @@ public class TimesUpController implements Subject {
         if(getTimesUpSettingsFacade().getAdminField()){
            registerObserver( new TimerView(this));
         }
-        TimesUpView view = new TimesUpView(this);
+        view = new TimesUpView(this);
         registerObserver( view);
     }
     private boolean createAnotherTeam(){
@@ -120,6 +122,20 @@ public class TimesUpController implements Subject {
     public void passButtonPushed() {
         repo.passButtonPushed();
         notifyObservers();
+    }
+
+    public void enalbeStartButton(){
+        view.enalbeStartButton();
+    }
+    public void disalbeStartButton(){
+        view.disalbeStartButton();
+    }
+    public void enableNextPassButton(){
+        view.enableNextPassButton();
+
+    }
+    public void disableNextPassButton(){
+        view.disableNextPassButton();
     }
 }
 

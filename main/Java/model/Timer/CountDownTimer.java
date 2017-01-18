@@ -34,12 +34,13 @@ public class CountDownTimer {
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (maxTime - timePast!= 0) {
+                if (maxTime - timePast >= 0) {
                     timePast++;
                     game.setTime(getTime());
                     controller.notifyObservers();
                 }else{
                     stop();
+                    game.setState(game.getOutOfTimeState());
                 }
             }
         });

@@ -13,19 +13,27 @@ public class OutOfTimeState implements TimesUpState {
 
     @Override
     public void nextButtonPushed() {
-        game.setNextTeam();
-        game.setNextName(game.getRandomName());
-        game.setTime("Start?");
-        game.setState(game.getInitialState());
+
     }
 
     @Override
     public void startButtonPushed() {
-
+        game.setState(game.getInitialState());
     }
 
     @Override
     public void passButtonPushed() {
 
+    }
+
+    @Override
+    public void initiate() {
+        game.setTime("Start?");
+        game.stopTimer();
+        game.resertTimer();
+        game.setNextName(game.getRandomName());
+        game.disableNextPassButton();
+        game.enalbeStartButton();
+        game.setState(game.getInitialState());
     }
 }

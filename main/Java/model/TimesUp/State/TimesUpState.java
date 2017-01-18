@@ -11,5 +11,6 @@ public interface TimesUpState {
 
     void passButtonPushed();
 
+    void initiate();
 
 }

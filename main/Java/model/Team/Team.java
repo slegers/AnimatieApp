@@ -32,20 +32,6 @@ public class Team {
         return name;
     }
 
-    public void setName(String name){
-
-        if(hasValidName(name)){
-            this.name = name;
-        }
-    }
-
-    public boolean hasValidName(String name){
-        if(name.trim().matches("")){
-            return false;
-        }
-        return true;
-    }
-
     public int getNumber() {
         return number;
     }
