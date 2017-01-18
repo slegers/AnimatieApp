@@ -1,7 +1,7 @@
 package View.TimesUp;
 
 import Controller.TimesUp.TimesUpController;
-import View.MenuBar;
+import View.TimesUpMenuBar;
 import model.TimesUp.Obeserver.Observer;
 
 import javax.swing.*;
@@ -67,7 +67,7 @@ public class TimesUpView extends JFrame implements Observer{
     private void setElements() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new GridLayout(3,1));
-        setJMenuBar(new MenuBar());
+        setJMenuBar(new TimesUpMenuBar(controller));
         timerL.setFont(new Font("serif",Font.PLAIN,getTextSize()));
         timerL.setForeground(getStandardTextColor());
         timerL.setHorizontalAlignment(SwingConstants.CENTER);

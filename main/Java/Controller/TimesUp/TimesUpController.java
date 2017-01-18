@@ -2,13 +2,13 @@ package Controller.TimesUp;
 
 import View.Team.CreateTeamView;
 import View.Timer.TimerView;
+import model.Team.Team;
 import model.TimesUp.Obeserver.Observer;
 import model.TimesUp.Obeserver.Subject;
 import model.TimesUp.Settings.TimesUpSettingsFacade;
 import View.TimesUp.*;
 import model.TimesUp.*;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class TimesUpController implements Subject {
     private TimesUpSettingsFacade timesUpSettingsFacade = new TimesUpSettingsFacade();
-    private TimesUpGame repo = new TimesUpGame(this);
+    private TimesUpGame game = new TimesUpGame(this);
     private ArrayList<Observer> observers = new ArrayList<>();
     private  TimesUpView view;
 
@@ -30,11 +30,20 @@ public class TimesUpController implements Subject {
         timesUpSettingsFacade.setAdminField(extraView);
     }
     public void addTeam(String teamName){
-        repo.addTeam(teamName);
-
+        if(!teamNameExists(teamName)){
+            game.addTeam(teamName);
+        }
+    }
+    private boolean teamNameExists(String name){
+        for(Team team : game.getTeams()){
+            if(team.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
     }
 
-    private void createTeamView(){
+    public void createTeamView(){
         new CreateTeamView(this);
     }
 
@@ -42,7 +51,7 @@ public class TimesUpController implements Subject {
         return timesUpSettingsFacade;
     }
     public void readNames(){
-        repo.readNames();
+        game.readNames();
     }
 
     public void createTimesUpSettingsView() {
@@ -57,24 +66,24 @@ public class TimesUpController implements Subject {
         registerObserver( view);
     }
     private boolean createAnotherTeam(){
-        if(getTimesUpSettingsFacade().getNumbTeams() > repo.getTeams().size()){
-            return true;
+        if(!(getTimesUpSettingsFacade().getNumbTeams() > game.getTeams().size())){
+            return false;
         }
-        return false;
+        return true;
     }
 
     public void createTeams() {
         if(createAnotherTeam()){
             createTeamView();
         }else{
-            repo.setTimer();
-            repo.setNextTeam();
+            game.setTimer();
+            game.setNextTeam();
             createTimesUpView();
         }
     }
 
     public String getNextTime() {
-        return repo.getTime();
+        return game.getTime();
     }
 
     @Override
@@ -96,31 +105,31 @@ public class TimesUpController implements Subject {
     public void notifyObservers() {
         for (Observer o : getObservers()){
             //o.update();
-            o.update(repo.getNextName(),repo.getCurrentTeamName(),repo.getTime(),repo.getCurrentTeamScore());
+            o.update(game.getNextName(), game.getCurrentTeamName(), game.getTime(), game.getCurrentTeamScore());
         }
     }
     public String getNextName(){
-            return repo.getNextName();
+            return game.getNextName();
     }
 
     public String getNextTeamName() {
-        return repo.getCurrentTeamName();
+        return game.getCurrentTeamName();
     }
 
     public String getScore() {
-        return repo.getCurrentTeamScore();
+        return game.getCurrentTeamScore();
     }
 
     public void startButtonPushed() {
-         repo.startButtonPushed();
+         game.startButtonPushed();
             notifyObservers();
     }
     public void nextButtonPushed() {
-        repo.nextButtonPushed();
+        game.nextButtonPushed();
         notifyObservers();
     }
     public void passButtonPushed() {
-        repo.passButtonPushed();
+        game.passButtonPushed();
         notifyObservers();
     }
 
@@ -136,6 +145,18 @@ public class TimesUpController implements Subject {
     }
     public void disableNextPassButton(){
         view.disableNextPassButton();
+    }
+
+    public void createTimerView() {
+        registerObserver( new TimerView(this));
+    }
+
+    public void dispose() {
+        view.dispose();
+        game = null;
+        observers = null;
+        timesUpSettingsFacade = null;
+        view = null;
     }
 }
 

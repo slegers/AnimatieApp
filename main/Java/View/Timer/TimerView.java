@@ -16,10 +16,14 @@ public class TimerView extends JFrame implements Observer{
     public TimerView(TimesUpController controller) {
         this.controller = controller;
         setElements();
+        setLocationRelativeTo(null);
         pack();
+        setVisible(true);
+        setSize(300,400);
     }
 
     private void setElements() {
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setBackground(getStandardBackColor());
         this.setLayout(new GridLayout(3,1));
         timerLabel = new JLabel();
@@ -43,9 +47,6 @@ public class TimerView extends JFrame implements Observer{
         score.setFont(new Font("serif",Font.PLAIN,getTextSize()));
         score.setBackground(getStandardBackColor());
         add(score);
-        setVisible(true);
-
-
     }
 
     @Override

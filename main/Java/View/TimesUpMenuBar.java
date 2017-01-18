@@ -1,5 +1,8 @@
 package View;
 
+import Controller.Main;
+import Controller.TimesUp.TimesUpController;
+
 import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import java.awt.event.ActionEvent;
@@ -10,15 +13,17 @@ import java.awt.event.MouseEvent;
 /**
  * Created by yanice on 15/01/17.
  */
-public class MenuBar extends JMenuBar {
-    private JMenu menu, help,exit, teams;
+public class TimesUpMenuBar extends JMenuBar {
+    private JMenu menu, help,exit, teams,timer;
     private JMenuItem menuItem;
-
-    public MenuBar(){
+    private TimesUpController controller;
+    public TimesUpMenuBar(TimesUpController controller){
         createItems();
         setElements();
         setActionHandlers();
         setVisible(true);
+        this.controller = controller;
+
     }
 
     private void setActionHandlers() {
@@ -26,7 +31,9 @@ public class MenuBar extends JMenuBar {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                JOptionPane.showMessageDialog(null,"Deze applicatie is geschreven door Yanice Slegers (c) in 2016. ","Animatie App",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Deze applicatie is geschreven door (c)Yanice Slegers  in 2016. \n" +
+                        "Voor verdere info yanice@wina.be","Animatie App",JOptionPane.INFORMATION_MESSAGE);
+
 
             }
         });
@@ -51,6 +58,22 @@ public class MenuBar extends JMenuBar {
             }
         });
 
+        timer.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                controller.createTimerView();
+            }
+        });
+        menu.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+               controller.dispose();
+                Main.main(null);
+            }
+        });
+
     }
 
     private void createItems() {
@@ -58,6 +81,7 @@ public class MenuBar extends JMenuBar {
         help = new JMenu("help");
         exit = new JMenu("exit");
         teams = new JMenu("Team");
+        timer = new JMenu("Timer");
 
     }
     private void setElements(){
@@ -65,6 +89,7 @@ public class MenuBar extends JMenuBar {
         this.add(help);
         this.add(exit);
         this.add(teams);
+        this.add(timer);
 
     }
 }
