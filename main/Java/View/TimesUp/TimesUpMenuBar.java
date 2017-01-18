@@ -1,4 +1,4 @@
-package View;
+package View.TimesUp;
 
 import Controller.Main;
 import Controller.TimesUp.TimesUpController;
@@ -14,7 +14,7 @@ import java.awt.event.MouseEvent;
  * Created by yanice on 15/01/17.
  */
 public class TimesUpMenuBar extends JMenuBar {
-    private JMenu menu, help,exit, teams,timer;
+    private JMenu menu, help,exit,timer;
     private JMenuItem menuItem;
     private TimesUpController controller;
     public TimesUpMenuBar(TimesUpController controller){
@@ -51,13 +51,6 @@ public class TimesUpMenuBar extends JMenuBar {
                 }
             }
         });
-        teams.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
-
         timer.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -80,7 +73,6 @@ public class TimesUpMenuBar extends JMenuBar {
         menu = new JMenu("Menu");
         help = new JMenu("help");
         exit = new JMenu("exit");
-        teams = new JMenu("Team");
         timer = new JMenu("Timer");
 
     }
@@ -88,7 +80,6 @@ public class TimesUpMenuBar extends JMenuBar {
         this.add(menu);
         this.add(help);
         this.add(exit);
-        this.add(teams);
         this.add(timer);
 
     }

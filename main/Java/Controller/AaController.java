@@ -1,18 +1,18 @@
 package Controller;
 
+import Controller.Stopwatch.StopwatchController;
 import Controller.TimesUp.TimesUpController;
 import View.MainMenu;
 import View.TimesUp.TimesUpSettingsView;
 import View.TimesUp.TimesUpView;
-import model.AaRepo;
 import model.Game.GameState.StartStatus;
 
 /**
  * Created by yanice on 25/12/16.
  */
 public class AaController {
-    private TimesUpController timesUpController = new TimesUpController();
-    private AaRepo aaRepo = new AaRepo(this);
+    private TimesUpController timesUpController;
+    private StopwatchController stopwatchController;
     public TimesUpController getTimesUpController() {
         return timesUpController;
     }
@@ -21,9 +21,11 @@ public class AaController {
     }
     
     public void startTimesUpSettings(){
-        if(!aaRepo.gameIsStarted()){
-            aaRepo.setGameState(new StartStatus());
-            timesUpController.createTimesUpSettingsView();
-        }
+        timesUpController = new TimesUpController();
+        timesUpController.createTimesUpSettingsView();
+    }
+    public void startStopwatch(){
+        stopwatchController = new StopwatchController();
+        stopwatchController.createStopwatchView();
     }
 }

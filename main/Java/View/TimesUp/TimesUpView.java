@@ -1,7 +1,6 @@
 package View.TimesUp;
 
 import Controller.TimesUp.TimesUpController;
-import View.TimesUpMenuBar;
 import model.TimesUp.Obeserver.Observer;
 
 import javax.swing.*;

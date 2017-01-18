@@ -1,4 +1,4 @@
-package model.Timer.Status;
+package model.TimesUp.Timer.Status;
 
 /**
  * Created by yanice on 16/01/17.

@@ -43,11 +43,12 @@ public class MainMenu extends JFrame {
 
             }
         });
-        timer = new JButton("Timer");
+        timer = new JButton("Stopwatch");
         timer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                controller.startStopwatch();
+                dispose();
             }
         });
         score = new JButton("Score");
@@ -61,7 +62,6 @@ public class MainMenu extends JFrame {
         add(countDownTimer);
         add(timer);
         add(score);
-        setVisible(true);
         getContentPane().setBackground(Color.red);
         this.pack();
     }

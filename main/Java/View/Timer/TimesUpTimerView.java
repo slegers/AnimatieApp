@@ -9,16 +9,16 @@ import java.awt.*;
 /**
  * Created by yanice on 25/12/16.
  */
-public class TimerView extends JFrame implements Observer{
+public class TimesUpTimerView extends JFrame implements Observer{
     private JLabel timerLabel,teamNameL,score;
 
     private TimesUpController controller;
-    public TimerView(TimesUpController controller) {
+    public TimesUpTimerView(TimesUpController controller) {
         this.controller = controller;
         setElements();
         setLocationRelativeTo(null);
-        pack();
         setVisible(true);
+        pack();
         setSize(300,400);
     }
 

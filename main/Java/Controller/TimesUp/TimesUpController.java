@@ -1,7 +1,7 @@
 package Controller.TimesUp;
 
 import View.Team.CreateTeamView;
-import View.Timer.TimerView;
+import View.Timer.TimesUpTimerView;
 import model.Team.Team;
 import model.TimesUp.Obeserver.Observer;
 import model.TimesUp.Obeserver.Subject;
@@ -60,7 +60,7 @@ public class TimesUpController implements Subject {
     private void createTimesUpView() {
         readNames();
         if(getTimesUpSettingsFacade().getAdminField()){
-           registerObserver( new TimerView(this));
+           registerObserver( new TimesUpTimerView(this));
         }
         view = new TimesUpView(this);
         registerObserver( view);
@@ -148,7 +148,7 @@ public class TimesUpController implements Subject {
     }
 
     public void createTimerView() {
-        registerObserver( new TimerView(this));
+        registerObserver( new TimesUpTimerView(this));
     }
 
     public void dispose() {

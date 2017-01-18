@@ -1,11 +1,9 @@
-package model.Timer;
+package model.TimesUp.Timer;
 
 import Controller.TimesUp.TimesUpController;
-import com.sun.tools.javadoc.Start;
-import model.Game.GameState.StartStatus;
-import model.Timer.Status.StoptedStatus;
-import model.Timer.Status.TimerStatus;
-import model.Timer.Status.RunningStatus;
+import model.TimesUp.Timer.Status.StoptedStatus;
+import model.TimesUp.Timer.Status.TimerStatus;
+import model.TimesUp.Timer.Status.RunningStatus;
 import model.TimesUp.TimesUpGame;
 
 import javax.swing.*;
