@@ -3,7 +3,7 @@ package model.TimesUp;
 import Controller.TimesUp.TimesUpController;
 import model.TimesUp.State.*;
 import model.Team.Team;
-import model.TimesUp.Timer.CountDownTimer;
+import model.Timer.CountDownTimer;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;

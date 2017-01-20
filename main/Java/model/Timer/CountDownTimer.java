@@ -1,9 +1,6 @@
-package model.TimesUp.Timer;
+package model.Timer;
 
 import Controller.TimesUp.TimesUpController;
-import model.TimesUp.Timer.Status.StoptedState;
-import model.TimesUp.Timer.Status.TimerState;
-import model.TimesUp.Timer.Status.RunningState;
 import model.TimesUp.TimesUpGame;
 
 import javax.swing.*;
@@ -18,9 +15,7 @@ public class CountDownTimer {
     private Timer timer;
     private int maxTime;
     private TimesUpController controller;
-    //private TimerState status;
-    //private StoptedState stoptedStatus;
-    //private RunningState runningStatus;
+
 
     public CountDownTimer(TimesUpController controller, TimesUpGame game) {
         maxTime = controller.getTimesUpSettingsFacade().getMaxTime();
@@ -73,23 +68,6 @@ public class CountDownTimer {
         //setStatus(getRunningStatus());
         timer.start();
     }
-  /*
-     public boolean isRunning() {
-        return status.isRunning();
-    }
-
-    public void setStatus(TimerState status) {
-        this.status = status;
-    }
-
-    public StoptedState getStoptedStatus() {
-        return stoptedStatus;
-    }
-
-    public RunningState getRunningStatus() {
-        return runningStatus;
-    }
-*/
     public int getTimeInt(){
         return maxTime - timePast;
     }

@@ -1,4 +1,4 @@
-package model.Stopwatch.StopwatchObserver;
+package model.Timer.GameTimerObserver;
 
 /**
  * Created by yanice on 18/01/17.

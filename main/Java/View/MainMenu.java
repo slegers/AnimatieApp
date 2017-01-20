@@ -28,7 +28,7 @@ public class MainMenu extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         GridLayout layout = new GridLayout(5,1);
         setLayout(layout);
-        timesUp = new JButton("Time'getStopptedState up");
+        timesUp = new JButton("Time's up");
         timesUp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -1,4 +1,4 @@
-package model.Stopwatch.StopwatchObserver;
+package model.Timer.GameTimerObserver;
 
 import java.util.List;
 

@@ -11,7 +11,8 @@ import java.awt.event.ActionListener;
 /**
  * Created by yanice on 27/12/16.
  */
-public class TimesUpView extends JFrame implements Observer{
+public
+class TimesUpView extends JFrame implements Observer{
     private TimesUpController controller;
     private JPanel timerP, teamP, buttonP;
     private JLabel timerL, nameL,teamNameL,score;
@@ -124,6 +125,12 @@ public class TimesUpView extends JFrame implements Observer{
         teamNameL.setText(teamName);
         score.setText(teamScore);
     }
+
+    @Override
+    public void update() {
+
+    }
+
     public void enalbeStartButton(){
         start.setEnabled(true);
     }

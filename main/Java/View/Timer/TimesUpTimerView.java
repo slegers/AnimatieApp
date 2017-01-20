@@ -56,6 +56,11 @@ public class TimesUpTimerView extends JFrame implements Observer{
         score.setText(teamScore);
     }
 
+    @Override
+    public void update() {
+
+    }
+
     public int getTextSize() {
         return 60;
     }

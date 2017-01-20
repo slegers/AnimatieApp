@@ -1,7 +1,7 @@
 package View.Timer;
 
 import Controller.Stopwatch.StopwatchController;
-import  model.Stopwatch.StopwatchObserver.*;
+import model.Timer.GameTimerObserver.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
