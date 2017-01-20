@@ -124,10 +124,6 @@ public class TimesUpGame {
         return currentTeam;
     }
 
-    public boolean isRunning() {
-        return timer.isRunning();
-    }
-
 
     public ArrayList<String> getGuessedNames() {
         return guessedNames;

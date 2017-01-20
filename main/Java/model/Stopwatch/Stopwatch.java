@@ -1,6 +1,9 @@
 package model.Stopwatch;
 
 import Controller.Stopwatch.StopwatchController;
+import model.TimesUp.Timer.Status.RunningState;
+import model.TimesUp.Timer.Status.StoptedState;
+import model.TimesUp.Timer.Status.TimerState;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,8 +17,13 @@ public class Stopwatch {
     private int centiSeconds,seconds,minutes,hours;
     private  StopwatchController controller;
     private Timer timer;
-
+    private TimerState status;
+    private RunningState runningState;
+    private StoptedState stoptedState;
     public Stopwatch(StopwatchController controller){
+        runningState = new RunningState();
+        stoptedState = new StoptedState();
+        setStatus(getStopptedState());
         this.controller = controller;
         centiSeconds = 0;
         seconds = 0;
@@ -64,6 +72,7 @@ public class Stopwatch {
 
     public void startTimer(){
         timer.start();
+        setStatus(getRunningState());
     }
     public void stopTimer(){
         timer.stop();
@@ -75,5 +84,16 @@ public class Stopwatch {
         hours = 0;
     }
 
+    public RunningState getRunningState() {
+        return runningState;
+    }
 
+    public StoptedState getStopptedState() {
+
+        return stoptedState;
+    }
+
+    public void setStatus(TimerState status) {
+        this.status = status;
+    }
 }

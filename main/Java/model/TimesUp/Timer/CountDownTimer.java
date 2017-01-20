@@ -1,9 +1,9 @@
 package model.TimesUp.Timer;
 
 import Controller.TimesUp.TimesUpController;
-import model.TimesUp.Timer.Status.StoptedStatus;
-import model.TimesUp.Timer.Status.TimerStatus;
-import model.TimesUp.Timer.Status.RunningStatus;
+import model.TimesUp.Timer.Status.StoptedState;
+import model.TimesUp.Timer.Status.TimerState;
+import model.TimesUp.Timer.Status.RunningState;
 import model.TimesUp.TimesUpGame;
 
 import javax.swing.*;
@@ -18,16 +18,16 @@ public class CountDownTimer {
     private Timer timer;
     private int maxTime;
     private TimesUpController controller;
-    private TimerStatus status;
-    private StoptedStatus stoptedStatus;
-    private RunningStatus runningStatus;
+    //private TimerState status;
+    //private StoptedState stoptedStatus;
+    //private RunningState runningStatus;
 
     public CountDownTimer(TimesUpController controller, TimesUpGame game) {
         maxTime = controller.getTimesUpSettingsFacade().getMaxTime();
         timePast = 0;
-        stoptedStatus = new StoptedStatus();
-        runningStatus = new RunningStatus();
-        status = getStoptedStatus();
+       // stoptedStatus = new StoptedState();
+       // runningStatus = new RunningState();
+       // status = getStoptedStatus();
         this.controller = controller;
         timer = new Timer(1000, new ActionListener() {
             @Override
@@ -65,30 +65,31 @@ public class CountDownTimer {
     }
 
     public void stop() {
-        setStatus(getStoptedStatus());
+        //setStatus(getStoptedStatus());
         timer.stop();
     }
 
     public void start() {
-        setStatus(getRunningStatus());
+        //setStatus(getRunningStatus());
         timer.start();
     }
-    public boolean isRunning() {
+  /*
+     public boolean isRunning() {
         return status.isRunning();
     }
 
-    public void setStatus(TimerStatus status) {
+    public void setStatus(TimerState status) {
         this.status = status;
     }
 
-    public StoptedStatus getStoptedStatus() {
+    public StoptedState getStoptedStatus() {
         return stoptedStatus;
     }
 
-    public RunningStatus getRunningStatus() {
+    public RunningState getRunningStatus() {
         return runningStatus;
     }
-
+*/
     public int getTimeInt(){
         return maxTime - timePast;
     }

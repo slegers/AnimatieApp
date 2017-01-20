@@ -5,7 +5,6 @@ import Controller.TimesUp.TimesUpController;
 import View.MainMenu;
 import View.TimesUp.TimesUpSettingsView;
 import View.TimesUp.TimesUpView;
-import model.Game.GameState.StartStatus;
 
 /**
  * Created by yanice on 25/12/16.

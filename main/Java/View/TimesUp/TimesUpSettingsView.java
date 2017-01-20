@@ -1,7 +1,6 @@
 package View.TimesUp;
 
 import Controller.TimesUp.TimesUpController;
-import model.AaRepo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +22,7 @@ public class TimesUpSettingsView extends JFrame{
         setLayout();
         setElements();
 
-        this.setTitle("Time's Up");
+        this.setTitle("Time'getStopptedState Up");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
         setLocationRelativeTo(null);
