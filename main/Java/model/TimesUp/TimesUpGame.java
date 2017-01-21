@@ -1,6 +1,8 @@
 package model.TimesUp;
 
 import Controller.TimesUp.TimesUpController;
+import model.Timer.CTimer;
+import model.Timer.GameTimer;
 import model.TimesUp.State.*;
 import model.Team.Team;
 import model.Timer.CountDownTimer;
@@ -16,6 +18,7 @@ public class TimesUpGame {
     private ArrayList<String> guessedNames = new ArrayList<>();
     private TimesUpController controller;
     private CountDownTimer timer;
+    //private GameTimer timer;
     private ArrayList<Team> teams = new ArrayList<>();
     private Team currentTeam;
     private String name;
@@ -87,12 +90,14 @@ public class TimesUpGame {
 
     public void setTimer() {
         this.timer = new CountDownTimer(controller,this);
+        //this.timer = new CTimer(controller.getTimesUpSettingsFacade().getMaxTime());
     }
     public void notifyView(){
         controller.notifyObservers();
     }
     public void resertTimer(){
         timer.resertTimer();
+        //timer.reset();
     }
     public ArrayList<Team> getTeams() {
         return teams;
@@ -183,7 +188,7 @@ public class TimesUpGame {
     }
 
     public boolean isOutOfTime() {
-        if(timer.getTimeInt() <= 0){
+        if(timer.getTimeInt() == 0){
             return true;
         }
         return false;

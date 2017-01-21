@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
  */
 public class MainMenu extends JFrame {
     private AaController controller;
-    private JButton timesUp, countDownTimer, timer, score;
+    private JButton timesUp, countDownTimer, timer;
     public MainMenu(AaController c ){
         setLocationRelativeTo(null);
         controller = c;
@@ -51,17 +51,10 @@ public class MainMenu extends JFrame {
                 dispose();
             }
         });
-        score = new JButton("Score");
-        score.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-            }
-        });
         add(timesUp);
         add(countDownTimer);
         add(timer);
-        add(score);
         getContentPane().setBackground(Color.red);
         this.pack();
     }

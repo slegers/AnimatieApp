@@ -105,7 +105,7 @@ public class TimesUpController implements Subject {
     public void notifyObservers() {
         for (Observer o : getObservers()){
             //o.update();
-            o.update(game.getNextName(), game.getCurrentTeamName(), game.getTime(), game.getCurrentTeamScore());
+            o.update(game.getNextName(), game.getCurrentTeamName(),game.getTime(), game.getCurrentTeamScore());
         }
     }
     public String getNextName(){

@@ -19,7 +19,7 @@ public class TimesUpTimerView extends JFrame implements Observer{
         setLocationRelativeTo(null);
         setVisible(true);
         pack();
-        setSize(300,400);
+        setSize(400,400);
     }
 
     private void setElements() {

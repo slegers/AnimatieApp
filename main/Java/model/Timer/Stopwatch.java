@@ -36,6 +36,4 @@ public class Stopwatch extends GameTimer {
         setMinutes(0);
         setHours(0);
     }
-
-
 }

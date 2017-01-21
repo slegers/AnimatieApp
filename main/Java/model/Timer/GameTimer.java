@@ -13,7 +13,10 @@ import java.util.*;
 public abstract class GameTimer implements Subject {
     private ArrayList<Observer> observers = new ArrayList<>();
     private Timer timer;
-    private int centiSeconds,seconds,minutes,hours;
+    int centiSeconds;
+    int seconds;
+    int minutes;
+    int hours;
 
     public GameTimer(){
         timer = new Timer(9, new ActionListener() {
@@ -110,5 +113,12 @@ public abstract class GameTimer implements Subject {
     @Override
     public void notifyObserver(Observer o) {
         o.update();
+    }
+
+    public boolean isOutOfTime() {
+       if(seconds == 0 && minutes == 0 && hours == 0 && centiSeconds == 0){
+           return true;
+       }
+       return false;
     }
 }

@@ -128,7 +128,10 @@ class TimesUpView extends JFrame implements Observer{
 
     @Override
     public void update() {
-
+        timerL.setText(controller.getNextName());
+        nameL.setText(controller.getNextTime());
+        teamNameL.setText(controller.getNextTeamName());
+        score.setText(controller.getScore());
     }
 
     public void enalbeStartButton(){

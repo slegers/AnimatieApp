@@ -63,7 +63,7 @@ public class StopWatchView extends JFrame implements Observer{
         start = new JButton("Start");
         reset = new JButton("reset");
         round = new JButton("round");
-        timer = new JLabel("00:00:00");
+        timer = new JLabel("00:00:00:00");
         rounds = new JLabel[5];
     }
 
